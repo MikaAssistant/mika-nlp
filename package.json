@@ -1,0 +1,17 @@
+{
+  "name": "mika-nlp",
+  "version": "0.0.1",
+  "description": "Processador de linguagem natural da assistente Mika",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "install": "cp .env.example .env"
+  },
+  "author": "Diogo Bemfica",
+  "license": "MIT",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "dotenv": "^5.0.1",
+    "socket.io-client": "^2.1.0"
+  }
+}
