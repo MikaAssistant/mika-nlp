@@ -7,11 +7,9 @@ async function main () {
     socket.on('nlp',async function(mensagem){
         let nlp = await dialogflow.send(mensagem);
         if(nlp.actionIncomplete === true){
-            console.log('client', nlp.mensagem)
             socket.emit('client',nlp.mensagem);
         }
         if(nlp.actionIncomplete === false){
-            console.log('kernel', nlp)
             socket.emit('kernel',nlp);
         }
     })
