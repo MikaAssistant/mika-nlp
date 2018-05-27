@@ -1,11 +1,11 @@
 'use strict';
-const env = require('dotenv').config().parsed;
+const db = require(__dirname+"/../config/database");
 const uuidv4 = require('uuid/v4');
 let id = uuidv4();
 
 //DIALOGFLOW
 const Apiai = require('apiai');
-const apiai = Apiai(env.DIALOGFLOW_CLIENT_ACCESS_TOKEN);
+const apiai = Apiai(db.get('settings.dialogflow.client_token').value());
 
 let contexts = null;
 

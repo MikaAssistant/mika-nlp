@@ -11,6 +11,9 @@ async function main () {
         }
         if(nlp.actionIncomplete === false){
             socket.emit('kernel',nlp);
+            if(nlp.mensagem !== null){
+                socket.emit('client',nlp.mensagem);
+            }
         }
     })
 }
