@@ -3,6 +3,11 @@ const env = require('dotenv').config().parsed;
 const socket = require('socket.io-client')('http://'+env.HTTP_HOST+':'+env.HTTP_PORT);
 const dialogflow = require('./src/dialogflow');
 
+let Response = {
+    message: null,
+    action: null
+};
+
 async function main () {
     socket.on('nlp',async function(mensagem){
         let nlp = await dialogflow.send(mensagem);
@@ -12,7 +17,9 @@ async function main () {
         if(nlp.actionIncomplete === false){
             socket.emit('kernel',nlp);
             if(nlp.mensagem !== null){
-                socket.emit('client',nlp.mensagem);
+                Response.message = nlp.mensagem;
+                Response.action = nlp.action;
+                socket.emit('client',Response);
             }
         }
     })
