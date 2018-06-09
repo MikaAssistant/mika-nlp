@@ -16,7 +16,7 @@ async function main () {
         Response.action = nlp.action;
 
         if(nlp.actionIncomplete === true){
-            socket.emit('client',nlp.mensagem);
+            socket.emit('client',Response);
         }
         if(nlp.actionIncomplete === false){
             socket.emit('kernel',nlp);
