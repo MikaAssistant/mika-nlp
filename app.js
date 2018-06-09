@@ -11,14 +11,16 @@ let Response = {
 async function main () {
     socket.on('nlp',async function(mensagem){
         let nlp = await dialogflow.send(mensagem);
+
+        Response.message = nlp.mensagem;
+        Response.action = nlp.action;
+
         if(nlp.actionIncomplete === true){
             socket.emit('client',nlp.mensagem);
         }
         if(nlp.actionIncomplete === false){
             socket.emit('kernel',nlp);
             if(nlp.mensagem !== null){
-                Response.message = nlp.mensagem;
-                Response.action = nlp.action;
                 socket.emit('client',Response);
             }
         }
